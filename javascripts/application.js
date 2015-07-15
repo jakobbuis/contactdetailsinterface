@@ -1,12 +1,7 @@
 $(document).on('ready', function(){
 
     // Must authenticate to OAuth
-    var oauth = new OAuth({
-        client: 'mead-development',
-        secret: 'UTknClCHAZqfYzJNZnjg',
-        resource: 'lid',
-        callback: 'http://mead.dev'
-    });
+    var oauth = new OAuth(config);
     oauth.authenticate(function(access_token){
         console.log(access_token);
         if (! access_token === false) {
