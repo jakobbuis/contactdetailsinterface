@@ -56,9 +56,6 @@ function search(event)
 
 function loadMemberData()
 {
-    // Show spinner
-    $('section').html('<img src="images/spinner.gif">');
-
     $.ajax({
         type: 'GET',
         url: 'https://people.i.bolkhuis.nl/persons?access_token='+window.access_token,
