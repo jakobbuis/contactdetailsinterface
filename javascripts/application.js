@@ -60,6 +60,10 @@ function loadMemberData()
         type: 'GET',
         url: 'https://people.i.bolkhuis.nl/persons?access_token='+window.access_token,
         success: function(result) {
+            // Sort results by first name
+            result = [].sort.call($(result), function(a,b){
+                return a.firstname.toLowerCase() > b.firstname.toLowerCase() ? 1 : -1;
+            });
             window.memberData = result;
             $('section').html('');
         }
