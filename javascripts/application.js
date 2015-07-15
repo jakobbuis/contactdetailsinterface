@@ -53,8 +53,9 @@ function search(event)
     });
 
     // Insert matches
+    var template = Handlebars.compile($("#member-template").html());
     matches.each(function(){
-        $('section').append(memberEntry(this));
+        $('section').append(template(this));
     });
 }
 
@@ -71,9 +72,4 @@ function loadMemberData()
             $('section').html('');
         }
     });
-}
-
-function memberEntry(data)
-{
-    return $('<div>').addClass('member').html('<h2>'+data.name+'</h2>E-mail: <a href="mailto:'+data.email+'">'+data.email+'</a>Telefoon: <a href="tel:'+data.mobile+'">'+data.mobile+'</a>')
 }
