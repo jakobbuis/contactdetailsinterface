@@ -1,0 +1,41 @@
+body {
+    font-size: medium;
+    margin: 0;
+    font-family: Tahoma, Geneva, sans-serif;
+}
+
+header {
+    padding: 1em;
+    height: 2.5em;
+    background-color: #ffcc00;
+}
+
+h1 {
+    margin: 0;
+    float: left;
+    margin-right: 1em;
+}
+
+input {
+    display: block;
+    float: left;
+    font-size: 1.5em;
+}
+
+section {
+    display: block;
+    height: 90%;
+    background-color: white;
+    padding: 1em;
+}
+
+.member {
+    width: 30em;
+    border: 1px solid #666;
+    border-radius: 1em;
+    padding: 1em;
+    margin-bottom: 1em;
+}
+.member h2 {
+    margin-top: 0;
+}
