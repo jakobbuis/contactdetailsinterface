@@ -20,11 +20,12 @@ $(document).on('ready', function(){
     var timer = 0;
     $('#search').on('keyup', function(event){
         clearTimeout(timer);
-        timer = setTimeout(search, 1000, [this, event]);
+        timer = setTimeout(search, 1000, [event]);
     });
+    $('#members_only').on('click', search);
 });
 
-function search(searchInput, event)
+function search(event)
 {
     // If the data isn't ready yet, silently wait for it
     var data = window.memberData;
@@ -36,13 +37,22 @@ function search(searchInput, event)
     $('section').html('')
 
     // Search entries
-    var query = $(searchInput).val().toLowerCase();
+    var query = $('#search').val().toLowerCase();
+    var members_only = $('#members_only').prop('checked');
+
     var matches = $(data).filter(function(){
-        return (this.name.toLowerCase().indexOf(query) !== -1);
+        var is_match = (this.name.toLowerCase().indexOf(query) !== -1);
+        var is_member = (this.membership === 'lid' || this.membership === 'kandidaatlid');
+
+        if (members_only) {
+            return (is_match && is_member);
+        }
+        else {
+            return is_match;
+        }
     });
 
     // Insert matches
-    console.log(matches);
     matches.each(function(){
         $('section').append(memberEntry(this));
     });
