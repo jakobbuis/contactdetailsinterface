@@ -18,6 +18,11 @@ $(document).on('ready', function(){
         timer = setTimeout(search, 1000, [event]);
     });
     $('#members_only').on('click', search);
+
+    // The form cannot be submitted
+    $('form').on('submit', function(event){
+        event.preventDefault();
+    })
 });
 
 function search(event)
