@@ -16,7 +16,7 @@ var Member = (function () {
     return {
 
         hasMembers: function() {
-            return this.data.count > 0;
+            return this.data.length > 0;
         },
 
         /**
