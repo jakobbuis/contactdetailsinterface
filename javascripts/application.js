@@ -74,6 +74,7 @@ function loadMemberData()
 
 function renderMembers(set)
 {
+    $('#search-counter').html('(' + set.length + ')');
     $('section').html('');
     set.each(function() {
         $('section').append(window.templates.member(this));
