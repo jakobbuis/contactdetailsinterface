@@ -92,6 +92,7 @@ function showForm(event)
 
     // Check if we need to load extended data
     if (Member.hasExtendedData(member.uid)) {
+        // Render the member
         $('section').html(window.templates.form(member));
     }
     else {
