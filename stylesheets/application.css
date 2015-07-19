@@ -10,7 +10,7 @@ header {
     background-color: #ffcc00;
 }
 
-h1 {
+header h1 {
     margin: 0;
     float: left;
     margin-right: 1em;
@@ -47,4 +47,10 @@ section {
 }
 .member h2 {
     margin: 0 auto;
+}
+
+/* Member details table */
+th {
+    text-align: left;
+    padding-right: 1em;
 }

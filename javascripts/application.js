@@ -3,6 +3,7 @@ $(document).on('ready', function(){
     // Compile templates
     window.templates = {
         member: Handlebars.compile($("#member-template").html()),
+        form: Handlebars.compile($('#form-template').html()),
     };
 
     // Must authenticate to OAuth
@@ -26,35 +27,34 @@ $(document).on('ready', function(){
     // The form cannot be submitted
     $('form').on('submit', function(event){
         event.preventDefault();
-    })
+    });
+
+    // Details link handler
+    $('section').on('click', '.details', showForm);
+
+    // Pressing back on a detail view shows the search list
+    $(window).on('popstate', function(){
+        $('#search').trigger('keyup');
+    });
+
+    $('section').on('click', '.back', function(event){
+        history.back();
+    });
 });
 
 function search(event)
 {
     // If the data isn't ready yet, silently wait for it
-    var data = window.memberData;
-    if (data === undefined) {
+    if (! Member.hasMembers()) {
         setTimeout('search', 100, [event]);
     }
 
-    // Search entries
+    // Gather search parameters
     var query = $('#search').val().toLowerCase();
     var members_only = $('#members_only').prop('checked');
 
-    var matches = $(data).filter(function(){
-        var is_match = (this.name.toLowerCase().indexOf(query) !== -1);
-        var is_member = (this.membership === 'lid' || this.membership === 'kandidaatlid');
-
-        if (members_only) {
-            return (is_match && is_member);
-        }
-        else {
-            return is_match;
-        }
-    });
-
-    // Insert matches
-    renderMembers(matches);
+    // Ssearch and display results
+    renderMembers(Member.search(query, members_only));
 }
 
 function loadMemberData()
@@ -62,12 +62,9 @@ function loadMemberData()
     $.ajax({
         type: 'GET',
         url: 'https://people.i.bolkhuis.nl/persons?access_token='+window.access_token,
-        success: function(result) {
-            // Sort results by first name
-            result = [].sort.call($(result), function(a,b){
-                return a.firstname.toLowerCase() > b.firstname.toLowerCase() ? 1 : -1;
-            });
-            window.memberData = result;
+        success: function(results) {
+            // Store data in models
+            Member.loadData(results)
 
             // Trigger the search field to show all current entries
             $('#search').trigger('keyup');
@@ -77,8 +74,19 @@ function loadMemberData()
 
 function renderMembers(set)
 {
-    $('section').html('')
+    $('section').html('');
     set.each(function() {
         $('section').append(window.templates.member(this));
     })
+}
+
+function showForm(event)
+{
+    // We have custom link behaviour
+    event.preventDefault();
+    history.pushState(null, null, this.href);
+
+    // Show details page of a member
+    var entry = Member.get($(this).attr('data-uid'));
+    $('section').html(window.templates.form(entry));
 }

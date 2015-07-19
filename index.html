@@ -13,6 +13,7 @@
     <script src="bower_components/handlebars/handlebars.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="javascripts/config.js" type="text/javascript" charset="utf-8"></script>
     <script src="javascripts/oauth.js" type="text/javascript" charset="utf-8"></script>
+    <script src="javascripts/Member.js" type="text/javascript" charset="utf-8"></script>
     <script src="javascripts/application.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
@@ -30,14 +31,13 @@
     </header>
 
     <section>
-        <h1>Informatie laden...</h1>
-        <img src="images/spinner.gif" alt="">
+        <h1>Informatie laden... <img src="images/spinner.gif" alt=""></h1>
     </section>
 
     <script id="member-template" type="text/x-handlebars-template">
         <div class="member">
             <h2>{{ name }}</h2>
-            <div class="details">
+            <div>
                 <img src="images/email.svg" alt="E-mail" width="16" height="16" />
                 <a href="mailto:{{ email }}">{{ email }}</a>
 
@@ -45,8 +45,56 @@
 
                 <img src="images/phone.svg" alt="Telefoon" width="16" height="16" />
                 <a href="tel:{{ mobile }}">{{ mobile }}</a>
+
+                <br><br>
+
+                <img src="images/id.svg" alt="" width="16" height="16" />
+                <a href="#persons/{{ uid }}" data-uid="{{ uid }}" class="details">Alle informatie</a>
             </div>
         </div>
+    </script>
+
+    <script id="form-template" type="text/x-handlebars-template">
+        <button class="back">Terug naar zoekresultaten</button>
+        <h1>{{ name }}</h1>
+        <table>
+            <tr>
+                <th>Gebruikersnaam</th>
+                <td>{{ uid }}</td>
+            </tr>
+            <tr>
+                <th>Naam</th>
+                <td>{{ name }}</td>
+            </tr>
+            <tr>
+                <th>Voorletters</th>
+                <td>{{ initials }}</td>
+            </tr>
+            <tr>
+                <th>Telefoon</th>
+                <td><a href="tel:{{ mobile }}">{{ mobile }}</a></td>
+            </tr>
+            <tr>
+                <th>Telefoon ouders</th>
+                <td><a href="tel:{{ phone_parents }}">{{ phone_parents }}</a></td>
+            </tr>
+            <tr>
+                <th>E-mailadres</th>
+                <td><a href="mailto:{{ email }}">{{ email }}</a></td>
+            </tr>
+            <tr>
+                <th>Adres</th>
+                <td>{{ address }}</td>
+            </tr>
+            <tr>
+                <th>Geslacht</th>
+                <td>{{ genderName }}</td>
+            </tr>
+            <tr>
+                <th>Geboortedatum</th>
+                <td>{{ dateofbirth }}</td>
+            </tr>
+        </table>
     </script>
 </body>
 </html>
