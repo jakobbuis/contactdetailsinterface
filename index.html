@@ -37,12 +37,13 @@
     <script id="member-template" type="text/x-handlebars-template">
         <div class="member">
             <h2>{{ name }}</h2>
-            <p>
-                E-mail: <a href="mailto:{{ email }}">{{ email }}</a>
-            </p>
-            <p>
-                Telefoon: <a href="tel:{{ mobile }}">{{ mobile }}</a>
-            </p>
+            <div class="details">
+                <img src="images/email.svg" alt="E-mail" width="16" height="16" />
+                <a href="mailto:{{ email }}">{{ email }}</a>
+                <br>
+                <img src="images/phone.svg" alt="E-mail" width="16" height="16" />
+                <a href="tel:{{ mobile }}">{{ mobile }}</a>
+            </div>
         </div>
     </script>
 </body>

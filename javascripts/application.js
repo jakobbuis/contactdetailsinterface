@@ -19,7 +19,7 @@ $(document).on('ready', function(){
     var timer = 0;
     $('#search').on('keyup', function(event){
         clearTimeout(timer);
-        timer = setTimeout(search, 1000, [event]);
+        timer = setTimeout(search, 500, [event]);
     });
     $('#members_only').on('click', search);
 
