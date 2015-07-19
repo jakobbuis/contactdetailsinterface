@@ -40,6 +40,14 @@ $(document).on('ready', function(){
     $('section').on('click', '.back', function(event){
         history.back();
     });
+
+    // Clicking the main header 'resets' the interface
+    // as if the user had reloaded
+    $('header h1').click(function(){
+        $('#members_only').prop('checked', true);
+        $('#search').val('');
+        $('#search').trigger('keyup');
+    });
 });
 
 function search(event)
