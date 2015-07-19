@@ -37,6 +37,7 @@ $(document).on('ready', function(){
         $('#search').trigger('keyup');
     });
 
+    // Explicit back button
     $('section').on('click', '.back', function(event){
         history.back();
     });
