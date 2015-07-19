@@ -88,6 +88,28 @@ function showForm(event)
     history.pushState(null, null, this.href);
 
     // Show details page of a member
-    var entry = Member.get($(this).attr('data-uid'));
-    $('section').html(window.templates.form(entry));
+    var member = Member.get($(this).attr('data-uid'));
+
+    // Check if we need to load extended data
+    if (Member.hasExtendedData(member.uid)) {
+        $('section').html(window.templates.form(member));
+    }
+    else {
+        // We need to gather extra data, roll the spinner!
+        $('section').html($('<img>').attr('src', 'images/spinner.gif'));
+
+        // Load data
+        $.ajax({
+            type: 'GET',
+            url: 'https://operculum.i.bolkhuis.nl/person/'+member.uid+'?access_token='+window.access_token,
+            dataType: 'json',
+            success: function(result) {
+                Member.addExtendedData(member.uid, result);
+                $('section').html(window.templates.form(member));
+            },
+            error: function(result) {
+                alert('unknown fatal error');
+            }
+        });
+    }
 }
