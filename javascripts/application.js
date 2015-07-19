@@ -71,12 +71,18 @@ function loadMemberData()
     $.ajax({
         type: 'GET',
         url: 'https://people.i.bolkhuis.nl/persons?access_token='+window.access_token,
+        timeout: 10000,
         success: function(results) {
             // Store data in models
             Member.loadData(results)
 
             // Trigger the search field to show all current entries
             $('#search').trigger('keyup');
+        },
+        error: function() {
+            showError('Kan de ledenadministratie niet bereiken.<br><br> \
+                        Weet je zeker dat je verbinding met het interne netwerk hebt? \
+                        Je bereikt het interne netwerk door te verbinden met Bolknet of de VPN.', true);
         }
     });
 }
@@ -118,8 +124,21 @@ function showForm(event)
                 $('section').html(window.templates.form(member));
             },
             error: function(result) {
-                alert('unknown fatal error');
+                showError('unknown fatal error');
             }
         });
     }
+}
+
+function showError(message, clear_ui)
+{
+    if (clear_ui === undefined) {
+        clear_ui = false;
+    }
+
+    if (clear_ui) {
+        $('section').html('');
+    }
+    var error = $('<p>').addClass('error').html(message);
+    $('section').prepend(error);
 }

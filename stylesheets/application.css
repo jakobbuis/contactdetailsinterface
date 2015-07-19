@@ -70,3 +70,14 @@ th {
 .email { background-image: url('../images/email.svg'); }
 .phone { background-image: url('../images/phone.svg'); }
 .id    { background-image: url('../images/id.svg');    }
+
+/* Error bar */
+.error {
+    border: 2px solid black;
+    padding: 1em;
+    margin-bottom: 1em;
+    border-radius: 0.5em;
+    background-color: #FBB;
+    border-color: #E99;
+    max-width: 30em;
+}
