@@ -3,7 +3,6 @@ $(document).on('ready', function(){
     // Must authenticate to OAuth
     var oauth = new OAuth(config);
     oauth.authenticate(function(access_token){
-        console.log(access_token);
         if (! access_token === false) {
             window.access_token = access_token;
             $('#search').prop('disabled', false).focus();
