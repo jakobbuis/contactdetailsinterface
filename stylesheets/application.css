@@ -56,3 +56,16 @@ th {
     text-align: left;
     padding-right: 1em;
 }
+
+/* Load images through CSS because handlebar.js is obnoxious,
+   forcing images to load from the root dir of the server */
+.email, .phone, .id {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    background-size: 1em 1em;
+}
+
+.email { background-image: url('../images/email.svg'); }
+.phone { background-image: url('../images/phone.svg'); }
+.id    { background-image: url('../images/id.svg');    }

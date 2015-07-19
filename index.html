@@ -7,7 +7,7 @@
 
     <link rel="stylesheet" type="text/css" href="stylesheets/application.css">
 
-    <link rel="icon" href="/images/favicon.png">
+    <link rel="icon" href="images/favicon.png">
 
     <script src="bower_components/zepto/zepto.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="bower_components/handlebars/handlebars.min.js" type="text/javascript" charset="utf-8"></script>
@@ -39,17 +39,17 @@
         <div class="member">
             <h2>{{ name }}</h2>
             <div>
-                <img src="images/email.svg" alt="E-mail" width="16" height="16" />
+                <span class="email"></span>
                 <a href="mailto:{{ email }}">{{ email }}</a>
 
                 <br>
 
-                <img src="images/phone.svg" alt="Telefoon" width="16" height="16" />
+                <span class="phone"></span>
                 <a href="tel:{{ mobile }}">{{ mobile }}</a>
 
                 <br><br>
 
-                <img src="images/id.svg" alt="" width="16" height="16" />
+                <span class="id"></span>
                 <a href="#persons/{{ uid }}" data-uid="{{ uid }}" class="details">Alle informatie</a>
             </div>
         </div>
