@@ -96,7 +96,7 @@ function showForm(event)
     }
     else {
         // We need to gather extra data, roll the spinner!
-        $('section').html($('<img>').attr('src', 'images/spinner.gif'));
+        $('section').html($('<img>').attr('src', config.callback + '/images/spinner.gif'));
 
         // Load data
         $.ajax({
