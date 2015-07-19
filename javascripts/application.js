@@ -1,5 +1,10 @@
 $(document).on('ready', function(){
 
+    // Compile templates
+    window.templates = {
+        member: Handlebars.compile($("#member-template").html()),
+    };
+
     // Must authenticate to OAuth
     var oauth = new OAuth(config);
     oauth.authenticate(function(access_token){
@@ -32,9 +37,6 @@ function search(event)
         setTimeout('search', 100, [event]);
     }
 
-    // Clear UI
-    $('section').html('')
-
     // Search entries
     var query = $('#search').val().toLowerCase();
     var members_only = $('#members_only').prop('checked');
@@ -52,10 +54,7 @@ function search(event)
     });
 
     // Insert matches
-    var template = Handlebars.compile($("#member-template").html());
-    matches.each(function(){
-        $('section').append(template(this));
-    });
+    renderMembers(matches);
 }
 
 function loadMemberData()
@@ -69,7 +68,17 @@ function loadMemberData()
                 return a.firstname.toLowerCase() > b.firstname.toLowerCase() ? 1 : -1;
             });
             window.memberData = result;
-            $('section').html('');
+
+            // Trigger the search field to show all current entries
+            $('#search').trigger('keyup');
         }
     });
+}
+
+function renderMembers(set)
+{
+    $('section').html('')
+    set.each(function() {
+        $('section').append(window.templates.member(this));
+    })
 }
