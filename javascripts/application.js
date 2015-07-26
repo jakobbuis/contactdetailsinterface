@@ -50,7 +50,7 @@ function search(event)
 {
     // If the data isn't ready yet, silently wait for it
     if (! Member.hasMembers()) {
-        setTimeout('search', 100, [event]);
+        setTimeout(search, 100, [event]);
     }
 
     // Gather search parameters
