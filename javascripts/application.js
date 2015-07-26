@@ -16,13 +16,8 @@ $(document).on('ready', function(){
         }
     });
 
-    // Search (delayed)
-    var timer = 0;
-    $('#search').on('keyup', function(event){
-        clearTimeout(timer);
-        timer = setTimeout(search, 500, [event]);
-    });
-    $('#members_only').on('click', search);
+    // Search field typing triggers search
+    $('#search').on('keyup', search);
 
     // The form cannot be submitted
     $('form').on('submit', function(event){
