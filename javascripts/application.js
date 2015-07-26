@@ -119,8 +119,14 @@ function showForm(event)
                 Member.addExtendedData(member.uid, result);
                 $('section').html(window.templates.form(member));
             },
-            error: function(result) {
-                showError('unknown fatal error');
+            error: function(xhr) {
+                if (xhr.status === 404) {
+                    // Not actually an error, there's just no extended data available
+                    $('section').html(window.templates.form(member));
+                }
+                else {
+                    showError('Unknown fatal error while contacting operculum. Please contact support.');
+                }
             }
         });
     }
