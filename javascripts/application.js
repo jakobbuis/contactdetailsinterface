@@ -18,6 +18,7 @@ $(document).on('ready', function(){
 
     // Search field typing triggers search
     $('#search').on('keyup', search);
+    $('#members_only').on('click', search);
 
     // The form cannot be submitted
     $('form').on('submit', function(event){
