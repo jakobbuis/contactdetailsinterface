@@ -100,6 +100,7 @@ function renderMemberPage(event)
 
     // Show details page of a member
     var member = Member.get($(this).attr('data-uid'));
+    member.access_token = window.access_token;
 
     // Check if we need to load extended data
     if (Member.hasExtendedData(member.uid)) {
