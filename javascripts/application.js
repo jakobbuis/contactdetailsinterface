@@ -26,7 +26,7 @@ $(document).on('ready', function(){
     });
 
     // Details link handler
-    $('section').on('click', '.details', showForm);
+    $('section').on('click', '.details', renderMemberPage);
 
     // Pressing back on a detail view shows the search list
     $(window).on('popstate', function(){
@@ -92,7 +92,7 @@ function renderMembers(set)
     })
 }
 
-function showForm(event)
+function renderMemberPage(event)
 {
     // We have custom link behaviour
     event.preventDefault();
